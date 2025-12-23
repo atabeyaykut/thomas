@@ -1933,7 +1933,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="notification_close_btn" onclick="document.querySelector(\'.notification_static_content\').remove(); document.getElementById(\'header_fix\')?.classList.remove(\'note_fix\');"><i class="cw_icon_close_v4 ico_size-xs"></i></span>
+                            <span class="notification_close_btn" onclick="this.closest('.notification_static_content').remove()"><i class="cw_icon_close_v4 ico_size-xs"></i></span>
                         </div>
                     </div>
                     <script>
@@ -1963,11 +1963,11 @@
 
 
                         $(document).ready(function () {
-                            $('.notification_close_btn').click(function () {
+                            $('.notification_close_btn').click(function () {if(document.querySelector('.notification_static_content')){
                                 $('.notification_static_content').remove();
                                 $('#header_fix').removeClass('note_fix');
                                 setCookie('_closeNotification', 'true', 1);
-                            });
+                            }});
 
                             setTimeout(function () {
                                 notificationFunc();
