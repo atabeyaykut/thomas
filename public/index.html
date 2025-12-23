@@ -1922,64 +1922,7 @@
     </div>
 
     <div id="app" class="toto_landint_container cw_state_idle">
-                    <div class="notification_static_content">
-                        <div class="notification_content">
-                            <div class="notification_wrapper">
-                                <span class="notification_icon"></span>
-                                <div class="notification_slide">
-                                    <div class="notification_text" style="transform: translate(0px); animation: auto ease 0s 1 normal none running none;">
-                                        <p>Dilediğiniz zaman tarayıcınızın adres cubuğuna pashagir25.com yazarak güncel adresimize güvenle erişim sağlayabilirsiniz.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="notification_close_btn" onclick="this.closest('.notification_static_content').remove()"><i class="cw_icon_close_v4 ico_size-xs"></i></span>
-                        </div>
-                    </div>
-                    <script>
-
-                        function notificationFunc() {
-                            var notificationElemWidth = $('.notification_text').width();
-                            var animationDuration = notificationElemWidth * 0.03;
-                            var notificationElemParentWidth = $('.notification_slide').width();
-                            $('#header_fix').addClass('note_fix');
-                            if (notificationElemWidth > notificationElemParentWidth) {
-                                $('.notification_text').css('animation', 'notification_slide ' + animationDuration + 's linear infinite')
-                            } else {
-                                $('.notification_text').css('transform', 'translate(0)');
-                                $('.notification_text').css('animation', 'none')
-                            }
-                        }
-
-                        $(".notification_static_content").on({ "touchstart mousedown": onInteraction, "mouseup touchend": onInteractionEnd });
-
-                        function onInteraction(e) {
-                            $('.notification_text').css('animation-play-state', 'paused');
-                        }
-
-                        function onInteractionEnd(e) {
-                            $('.notification_text').css('animation-play-state', 'running');
-                        }
-
-
-                        $(document).ready(function () {
-                            $('.notification_close_btn').click(function () {if(document.querySelector('.notification_static_content')){
-                                $('.notification_static_content').remove();
-                                $('#header_fix').removeClass('note_fix');
-                                setCookie('_closeNotification', 'true', 1);
-                            }});
-
-                            setTimeout(function () {
-                                notificationFunc();
-                            },
-                                5);
-
-                        });
-
-                        $(window).on('resize', function () {
-                            notificationFunc();
-                        })
-                    </script>
+                    <!-- Notification popup removed to prevent JS errors -->
 
 
 
