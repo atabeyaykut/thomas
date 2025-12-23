@@ -2425,46 +2425,7 @@
         
 
 
-    <div class="welcome_login_popup_container">
-        <div class="welcome_login_popup">
-            <div class="welcome_login_popup_inner">
-                    <div class="welcome_login_popup_close" id="js_popup_close_btn" data-role="none" data-type="osp" data-val="2025-10-07T10:39:39.977">
-                        <i class="cw_icon_close_v4 ico_size-xs"></i>
-                    </div>
-<p><img alt="Test" src="https://i.hizliresim.com/a0onfzi.jpg"></p>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $('body').addClass('ofh');
-        $('body').css({ 'padding-left': '15px' });
-        $(document).on('click', '#js_popup_close_btn', function () {
-            let type = this.dataset.type;
-            let val = this.dataset.val;
-            if (val != undefined && val != '') {
-                setCookie('_' + type, val, "1", '');
-            } else {
-                setCookie('_' + type, 'true', "1", '');
-            }
-            $(this).closest($('.welcome_login_popup_container')).fadeOut();
-            $('body').css({ 'padding-left': '0' });
-            if (!$('body').hasClass('no_scroll') && document.getElementById('js_non_verified_reminder_cont') == null && document.getElementById('js_gdpr_popup_cont') == null) {
-                $('body').removeClass('ofh');
-            }
-        });
-
-        $(document).on('click', '.js_after_24_hours', function () {
-            $('#js_popup_close_btn').trigger('click');
-        });
-
-        $(document).on('click', '.js_not_now', function () {
-            $(this).closest($('.welcome_login_popup_container')).fadeOut();
-            $('body').css({ 'padding-left': '0' });
-            if (!$('body').hasClass('no_scroll') && document.getElementById('js_non_verified_reminder_cont') == null && document.getElementById('js_gdpr_popup_cont') == null) {
-                $('body').removeClass('ofh');
-            }
-        });
-    </script>
+    <!-- Welcome popup removed completely -->
 
 
             <div class="content-wrapper">
