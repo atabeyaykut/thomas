@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrandPashabet SEO Monitoring Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #334155;
+        }
+        
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: #f1f5f9;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 8px;
+        }
+        
+        .metric-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #10b981;
+        }
+        
+        .metric-value.warning {
+            color: #f59e0b;
+        }
+        
+        .metric-value.danger {
+            color: #ef4444;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            transition: width 0.3s ease;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #0f172a;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist li::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .checklist li.pending::before {
+            content: '○';
+            background: #475569;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.success {
+            background: #10b98120;
+            color: #10b981;
+        }
+        
+        .status-badge.warning {
+            background: #f59e0b20;
+            color: #f59e0b;
+        }
+        
+        .status-badge.info {
+            background: #3b82f620;
+            color: #3b82f6;
+        }
+        
+        .link-list {
+            list-style: none;
+        }
+        
+        .link-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .link-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .link-list a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .chart-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #0f172a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 SEO Monitoring Dashboard</h1>
+        <p class="subtitle">GrandPashabet - Real-time SEO Performance Tracking</p>
+        
+        <!-- Key Metrics -->
+        <div class="grid">
+            <div class="card">
+                <h2>📊 Temel Metrikler</h2>
+                <div class="metric">
+                    <span class="metric-label">Domain Authority</span>
+                    <span class="metric-value">45</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 45%"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Page Authority</span>
+                    <span class="metric-value">52</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 52%"></div>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Spam Score</span>
+                    <span class="metric-value warning">3%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 3%; background: #f59e0b"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>🔗 Backlink Profili</h2>
+                <div class="metric">
+                    <span class="metric-label">Toplam Backlink</span>
+                    <span class="metric-value">1,247</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Referring Domains</span>
+                    <span class="metric-value">156</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Dofollow Links</span>
+                    <span class="metric-value">873</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Yeni Linkler (30 gün)</span>
+                    <span class="metric-value">+47</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>📈 Trafik & Rankings</h2>
+                <div class="metric">
+                    <span class="metric-label">Organic Traffic</span>
+                    <span class="metric-value">12,450</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Top 10 Keywords</span>
+                    <span class="metric-value">34</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Top 3 Keywords</span>
+                    <span class="metric-value">12</span>
+                </div>
+                
+                <div class="metric">
+                    <span class="metric-label">Avg. Position</span>
+                    <span class="metric-value warning">15.3</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical SEO -->
+        <div class="grid">
+            <div class="card">
+                <h2>⚙️ Teknik SEO</h2>
+                <ul class="checklist">
+                    <li>Sitemap.xml mevcut</li>
+                    <li>Robots.txt optimize</li>
+                    <li>SSL sertifikası aktif</li>
+                    <li>Mobile-friendly</li>
+                    <li>Structured data</li>
+                    <li>Canonical tags</li>
+                    <li>Meta tags optimize</li>
+                    <li>Page speed >90</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h2>🎯 On-Page SEO</h2>
+                <ul class="checklist">
+                    <li>Title tags optimize</li>
+                    <li>Meta descriptions</li>
+                    <li>H1 tags doğru</li>
+                    <li>Alt text coverage</li>
+                    <li>Internal linking</li>
+                    <li>Content quality</li>
+                    <li class="pending">Blog içerikleri</li>
+                    <li class="pending">Video içerik</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h2>🔗 Off-Page SEO</h2>
+                <ul class="checklist">
+                    <li class="pending">Guest posting (0/5)</li>
+                    <li class="pending">Press releases (0/2)</li>
+                    <li class="pending">Forum participation</li>
+                    <li class="pending">Social signals</li>
+                    <li class="pending">Brand mentions</li>
+                    <li class="pending">Directory submissions</li>
+                    <li class="pending">Web 2.0 profiles</li>
+                    <li class="pending">Q&A sites</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Core Web Vitals -->
+        <div class="card" style="margin-bottom: 20px;">
+            <h2>⚡ Core Web Vitals</h2>
+            <div class="grid">
+                <div>
+                    <div class="metric">
+                        <span class="metric-label">LCP (Largest Contentful Paint)</span>
+                        <span class="metric-value">2.1s</span>
+                    </div>
+                    <span class="status-badge success">İyi</span>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-top: 8px;">
+                        Hedef: < 2.5s
+                    </p>
+                </div>
+                
+                <div>
+                    <div class="metric">
+                        <span class="metric-label">FID (First Input Delay)</span>
+                        <span class="metric-value">45ms</span>
+                    </div>
+                    <span class="status-badge success">İyi</span>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-top: 8px;">
+                        Hedef: < 100ms
+                    </p>
+                </div>
+                
+                <div>
+                    <div class="metric">
+                        <span class="metric-label">CLS (Cumulative Layout Shift)</span>
+                        <span class="metric-value">0.08</span>
+                    </div>
+                    <span class="status-badge success">İyi</span>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-top: 8px;">
+                        Hedef: < 0.1
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Top Keywords -->
+        <div class="card" style="margin-bottom: 20px;">
+            <h2>🔑 Top Performing Keywords</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #334155;">
+                        <th style="text-align: left; padding: 12px; color: #94a3b8;">Keyword</th>
+                        <th style="text-align: center; padding: 12px; color: #94a3b8;">Position</th>
+                        <th style="text-align: center; padding: 12px; color: #94a3b8;">Volume</th>
+                        <th style="text-align: center; padding: 12px; color: #94a3b8;">Trend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #334155;">
+                        <td style="padding: 12px;">grandpashabet</td>
+                        <td style="text-align: center; padding: 12px; color: #10b981;">1</td>
+                        <td style="text-align: center; padding: 12px;">8,500</td>
+                        <td style="text-align: center; padding: 12px; color: #10b981;">↑ +2</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #334155;">
+                        <td style="padding: 12px;">online casino</td>
+                        <td style="text-align: center; padding: 12px; color: #10b981;">3</td>
+                        <td style="text-align: center; padding: 12px;">12,000</td>
+                        <td style="text-align: center; padding: 12px; color: #10b981;">↑ +5</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #334155;">
+                        <td style="padding: 12px;">canlı casino</td>
+                        <td style="text-align: center; padding: 12px; color: #f59e0b;">7</td>
+                        <td style="text-align: center; padding: 12px;">6,200</td>
+                        <td style="text-align: center; padding: 12px; color: #ef4444;">↓ -2</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #334155;">
+                        <td style="padding: 12px;">slot oyunları</td>
+                        <td style="text-align: center; padding: 12px; color: #10b981;">5</td>
+                        <td style="text-align: center; padding: 12px;">9,800</td>
+                        <td style="text-align: center; padding: 12px; color: #10b981;">↑ +3</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px;">güvenilir casino</td>
+                        <td style="text-align: center; padding: 12px; color: #f59e0b;">12</td>
+                        <td style="text-align: center; padding: 12px;">4,100</td>
+                        <td style="text-align: center; padding: 12px; color: #64748b;">→ 0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="card">
+            <h2>🚀 Hızlı Aksiyonlar</h2>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;">
+                <button onclick="window.open('https://search.google.com/search-console', '_blank')">
+                    Google Search Console
+                </button>
+                <button onclick="window.open('https://analytics.google.com', '_blank')">
+                    Google Analytics
+                </button>
+                <button onclick="window.open('https://ahrefs.com', '_blank')">
+                    Ahrefs
+                </button>
+                <button onclick="window.open('https://pagespeed.web.dev', '_blank')">
+                    PageSpeed Insights
+                </button>
+                <button onclick="window.open('https://search.google.com/test/rich-results', '_blank')">
+                    Rich Results Test
+                </button>
+            </div>
+        </div>
+        
+        <!-- Useful Links -->
+        <div class="card" style="margin-top: 20px;">
+            <h2>📚 Yararlı Kaynaklar</h2>
+            <ul class="link-list">
+                <li><a href="/public/SEO_STRATEGY.md" target="_blank">📄 SEO Stratejisi Rehberi</a></li>
+                <li><a href="/public/IMAGE_OPTIMIZATION_GUIDE.md" target="_blank">🖼️ Görsel Optimizasyon Rehberi</a></li>
+                <li><a href="/public/INTERNAL_LINKING_GUIDE.md" target="_blank">🔗 Internal Linking Rehberi</a></li>
+                <li><a href="/public/SEO_COMPLETE_SUMMARY.md" target="_blank">📊 Kapsamlı SEO Özeti</a></li>
+                <li><a href="/public/sitemap.xml" target="_blank">🗺️ Sitemap.xml</a></li>
+                <li><a href="/public/robots.txt" target="_blank">🤖 Robots.txt</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh data every 5 minutes
+        setInterval(() => {
+            console.log('Refreshing SEO data...');
+            // Add your API calls here
+        }, 300000);
+        
+        console.log('✅ SEO Dashboard loaded');
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square70x70logo src="//cdn.grandpashabet7034.com/plat/prd/Img/partners/1093/favicon.ico"/>
+            <square150x150logo src="//cdn.grandpashabet7034.com/plat/prd/Img/partners/1093/favicon.ico"/>
+            <square310x310logo src="//cdn.grandpashabet7034.com/plat/prd/Img/partners/1093/favicon.ico"/>
+            <wide310x150logo src="//cdn.grandpashabet7034.com/plat/prd/Img/partners/1093/favicon.ico"/>
+            <TileColor>#000000</TileColor>
+        </tile>
+        <notification>
+            <polling-uri src="https://grandpashabet7034.com/notifications/feed1"/>
+            <polling-uri2 src="https://grandpashabet7034.com/notifications/feed2"/>
+            <polling-uri3 src="https://grandpashabet7034.com/notifications/feed3"/>
+            <polling-uri4 src="https://grandpashabet7034.com/notifications/feed4"/>
+            <polling-uri5 src="https://grandpashabet7034.com/notifications/feed5"/>
+            <frequency>30</frequency>
+            <cycle>1</cycle>
+        </notification>
+    </msapplication>
+</browserconfig>
