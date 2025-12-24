@@ -206,13 +206,18 @@
                     <h3>🏦 ${bank.bankName || 'Banka'}</h3>
                     <div class="account-info">
                         <span class="account-label">Hesap Sahibi:</span>
-                        <span class="account-value">${bank.owner || 'N/A'}</span>
+                        <span class="account-value">${bank.accountHolder || bank.owner || 'N/A'}</span>
                         
                         <span class="account-label">IBAN:</span>
                         <span class="account-value">
                             ${bank.iban || 'N/A'}
                             ${bank.iban ? `<button class="copy-btn" onclick="copyToClipboard('${bank.iban.replace(/\s/g, '')}')">Kopyala</button>` : ''}
                         </span>
+                        
+                        ${bank.minAmount ? `
+                        <span class="account-label">Min. Tutar:</span>
+                        <span class="account-value">${bank.minAmount} TRY</span>
+                        ` : ''}
                         
                         ${bank.branch ? `
                         <span class="account-label">Şube Kodu:</span>
