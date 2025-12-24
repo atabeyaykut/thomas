@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Backend Test - IBAN POST/PUT Operations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        button.delete {
+            background: #e74c3c;
+        }
+        
+        button.delete:hover {
+            background: #c0392b;
+        }
+        
+        button.read {
+            background: #2ecc71;
+        }
+        
+        button.read:hover {
+            background: #27ae60;
+        }
+        
+        .log {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-left: 3px solid #00ff00;
+            padding-left: 10px;
+        }
+        
+        .log-entry.success {
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+        
+        .log-entry.error {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .log-entry.info {
+            border-color: #3498db;
+            color: #3498db;
+        }
+        
+        .data-display {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .data-display pre {
+            margin: 0;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Backend Tester</h1>
+        <p class="subtitle">IBAN POST/PUT/DELETE İşlemlerini Test Edin</p>
+        
+        <!-- POST - Create New -->
+        <div class="section">
+            <h2>📝 POST - Yeni IBAN Ekle</h2>
+            <div class="form-group">
+                <label>Bank ID (bank1, bank2, bank3, bank4...):</label>
+                <input type="text" id="postBankId" value="bank4" placeholder="bank4">
+            </div>
+            <div class="form-group">
+                <label>Hesap Sahibi:</label>
+                <input type="text" id="postOwner" value="GRANDPASHABET LTD" placeholder="GRANDPASHABET LTD">
+            </div>
+            <div class="form-group">
+                <label>IBAN:</label>
+                <input type="text" id="postIban" value="TR66 0009 9000 0000 1111 2222 33" placeholder="TR66 0009 9000...">
+            </div>
+            <div class="form-group">
+                <label>Banka Adı:</label>
+                <input type="text" id="postBankName" value="Yapı Kredi Bankası" placeholder="Yapı Kredi">
+            </div>
+            <div class="form-group">
+                <label>Şube Kodu:</label>
+                <input type="text" id="postBranch" value="9000" placeholder="9000">
+            </div>
+            <div class="form-group">
+                <label>Hesap No:</label>
+                <input type="text" id="postAccountNo" value="99887766" placeholder="99887766">
+            </div>
+            <button onclick="postNewBank()">➕ POST - Yeni Ekle</button>
+        </div>
+        
+        <!-- PUT - Update Existing -->
+        <div class="section">
+            <h2>✏️ PUT - Mevcut IBAN Güncelle</h2>
+            <div class="form-group">
+                <label>Bank ID (güncellenecek):</label>
+                <select id="putBankId">
+                    <option value="bank1">bank1 - Ziraat Bankası</option>
+                    <option value="bank2">bank2 - Garanti BBVA</option>
+                    <option value="bank3">bank3 - İş Bankası</option>
+                    <option value="bank4">bank4 - Yapı Kredi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Yeni IBAN:</label>
+                <input type="text" id="putIban" placeholder="TR99 0000 0000 0000 0000 0000 00">
+            </div>
+            <div class="form-group">
+                <label>Yeni Hesap Sahibi (opsiyonel):</label>
+                <input type="text" id="putOwner" placeholder="Boş bırakılırsa değişmez">
+            </div>
+            <button onclick="updateBank()">🔄 PUT - Güncelle</button>
+        </div>
+        
+        <!-- DELETE -->
+        <div class="section">
+            <h2>🗑️ DELETE - IBAN Sil</h2>
+            <div class="form-group">
+                <label>Silinecek Bank ID:</label>
+                <select id="deleteBankId">
+                    <option value="bank1">bank1</option>
+                    <option value="bank2">bank2</option>
+                    <option value="bank3">bank3</option>
+                    <option value="bank4">bank4</option>
+                </select>
+            </div>
+            <button class="delete" onclick="deleteBank()">❌ DELETE - Sil</button>
+        </div>
+        
+        <!-- READ - Get All -->
+        <div class="section">
+            <h2>📖 READ - Tüm Verileri Oku</h2>
+            <button class="read" onclick="getAllBanks()">📥 GET - Tüm IBAN'ları Getir</button>
+            <div id="dataDisplay"></div>
+        </div>
+        
+        <!-- Console Log -->
+        <div class="log" id="consoleLog">
+            <div class="log-entry info">🚀 Firebase Backend Tester hazır. Yukarıdaki butonlarla test yapabilirsiniz.</div>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAF66MKaDZOX7-xlXsW-YA0qV_Z617uDfE",
+            authDomain: "isaa-559ef.firebaseapp.com",
+            databaseURL: "https://isaa-559ef-default-rtdb.firebaseio.com",
+            projectId: "isaa-559ef",
+            storageBucket: "isaa-559ef.firebasestorage.app",
+            messagingSenderId: "1017838932952",
+            appId: "1:1017838932952:web:8796cfdc74b1ab3343d8ad",
+            measurementId: "G-CP77K3P2YZ"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('consoleLog');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // POST - Create New Bank
+        async function postNewBank() {
+            const bankId = document.getElementById('postBankId').value;
+            const owner = document.getElementById('postOwner').value;
+            const iban = document.getElementById('postIban').value;
+            const bankName = document.getElementById('postBankName').value;
+            const branch = document.getElementById('postBranch').value;
+            const accountNo = document.getElementById('postAccountNo').value;
+
+            if (!bankId || !owner || !iban) {
+                log('❌ Lütfen tüm zorunlu alanları doldurun!', 'error');
+                return;
+            }
+
+            log(`📤 POST işlemi başlatılıyor: ${bankId}`, 'info');
+
+            const newBankData = {
+                owner: owner,
+                iban: iban,
+                bankName: bankName,
+                branch: branch,
+                accountNo: accountNo,
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                await database.ref(`bankData/${bankId}`).set(newBankData);
+                log(`✅ POST başarılı! ${bankId} eklendi.`, 'success');
+                log(`📊 Eklenen veri: ${JSON.stringify(newBankData)}`, 'info');
+            } catch (error) {
+                log(`❌ POST hatası: ${error.message}`, 'error');
+            }
+        }
+
+        // PUT - Update Existing Bank
+        async function updateBank() {
+            const bankId = document.getElementById('putBankId').value;
+            const newIban = document.getElementById('putIban').value;
+            const newOwner = document.getElementById('putOwner').value;
+
+            if (!newIban && !newOwner) {
+                log('❌ En az bir alan güncellenmelidir!', 'error');
+                return;
+            }
+
+            log(`📤 PUT işlemi başlatılıyor: ${bankId}`, 'info');
+
+            const updates = {};
+            if (newIban) updates.iban = newIban;
+            if (newOwner) updates.owner = newOwner;
+            updates.updatedAt = new Date().toISOString();
+
+            try {
+                await database.ref(`bankData/${bankId}`).update(updates);
+                log(`✅ PUT başarılı! ${bankId} güncellendi.`, 'success');
+                log(`📊 Güncellenen alanlar: ${JSON.stringify(updates)}`, 'info');
+            } catch (error) {
+                log(`❌ PUT hatası: ${error.message}`, 'error');
+            }
+        }
+
+        // DELETE - Remove Bank
+        async function deleteBank() {
+            const bankId = document.getElementById('deleteBankId').value;
+            
+            if (!confirm(`${bankId} silinecek. Emin misiniz?`)) {
+                log('⚠️ Silme işlemi iptal edildi.', 'info');
+                return;
+            }
+
+            log(`📤 DELETE işlemi başlatılıyor: ${bankId}`, 'info');
+
+            try {
+                await database.ref(`bankData/${bankId}`).remove();
+                log(`✅ DELETE başarılı! ${bankId} silindi.`, 'success');
+            } catch (error) {
+                log(`❌ DELETE hatası: ${error.message}`, 'error');
+            }
+        }
+
+        // GET - Read All Banks
+        async function getAllBanks() {
+            log('📤 GET işlemi başlatılıyor...', 'info');
+
+            try {
+                const snapshot = await database.ref('bankData').once('value');
+                const data = snapshot.val();
+                
+                if (data) {
+                    log(`✅ GET başarılı! ${Object.keys(data).length} banka bulundu.`, 'success');
+                    
+                    const displayDiv = document.getElementById('dataDisplay');
+                    displayDiv.innerHTML = `
+                        <div class="data-display">
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    log('⚠️ Hiç veri bulunamadı.', 'info');
+                    document.getElementById('dataDisplay').innerHTML = '';
+                }
+            } catch (error) {
+                log(`❌ GET hatası: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-load on page load
+        window.addEventListener('load', () => {
+            log('✅ Firebase başarıyla bağlandı!', 'success');
+            getAllBanks();
+        });
+    </script>
+</body>
+</html>
