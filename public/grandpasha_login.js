@@ -38,14 +38,30 @@
                 }
             }
             
-            #gp-login-modal .form-group-label {
+            #gp-login-modal .form-group {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
             }
             
+            #gp-login-modal .form-group-label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+            
             #gp-login-modal .form-group-label label {
                 text-align: center;
+            }
+            
+            #gp-login-modal .relative,
+            #gp-login-modal .tl_input_with_suffix {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
             }
             
             .gp-header-actions {
