@@ -19,12 +19,16 @@
                 justify-content: center;
                 align-items: center;
                 backdrop-filter: blur(5px);
+                overflow-y: auto;
             }
             
             #gp-login-modal {
                 width: 500px;
                 max-width: 95%;
+                max-height: 90vh;
+                overflow-y: auto;
                 animation: slideDown 0.3s ease-out;
+                margin: 20px 0;
             }
             
             @keyframes slideDown {
@@ -38,16 +42,30 @@
                 }
             }
             
+            #gp-login-modal #login_container {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            
+            #gp-login-modal .tl_popup_content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
             #gp-login-modal .form-group {
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
                 margin-bottom: 20px;
+                width: 100%;
             }
             
             #gp-login-modal .form-group-label {
                 display: flex;
                 align-items: center;
+                justify-content: flex-start;
             }
             
             #gp-login-modal .form-group-label label {
