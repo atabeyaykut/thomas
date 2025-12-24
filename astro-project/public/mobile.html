@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GrandPashabet - Mobil</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="GrandPashabet mobil casino ve bahis sitesi. Güvenli online casino, canlı casino ve spor bahisleri.">
+    <link rel="canonical" href="https://grandpashabet7034.com/mobile.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="//cdn.grandpashabet7034.com/plat/prd/Img/partners/1093/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .mobile-header {
+            background: linear-gradient(180deg, #2B350B 0%, #1a1a1a 100%);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            width: 150px;
+            height: 40px;
+            background: url('//cdn.grandpashabet7034.com/plat/prd/Img/mobile/partners/1093/logo.png') no-repeat center;
+            background-size: contain;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-register {
+            background: #D0B752;
+            color: #000;
+        }
+        
+        .btn-login {
+            background: transparent;
+            color: #D0B752;
+            border: 2px solid #D0B752;
+        }
+        
+        .notification-bar {
+            background: rgba(208, 183, 82, 0.1);
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #D0B752;
+            border-bottom: 1px solid rgba(208, 183, 82, 0.3);
+        }
+        
+        .banner-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .banner-slider img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: #2B350B;
+        }
+        
+        .quick-link {
+            background: rgba(208, 183, 82, 0.1);
+            border: 1px solid rgba(208, 183, 82, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        
+        .quick-link:active {
+            transform: scale(0.95);
+            background: rgba(208, 183, 82, 0.2);
+        }
+        
+        .quick-link-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .quick-link-text {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .section {
+            padding: 20px 15px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #D0B752;
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .game-card {
+            background: #2B350B;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .game-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .game-card-title {
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .floating-deposit {
+            position: fixed;
+            bottom: 80px;
+            right: 15px;
+            width: 60px;
+            height: 60px;
+            background: #D0B752;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(208, 183, 82, 0.5);
+            z-index: 999;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2B350B;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #B8B8B8;
+            font-size: 11px;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        .nav-item.active {
+            color: #D0B752;
+        }
+        
+        .nav-item-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .desktop-link {
+            text-align: center;
+            padding: 20px;
+            background: rgba(208, 183, 82, 0.1);
+            margin: 20px 15px;
+            border-radius: 8px;
+        }
+        
+        .desktop-link a {
+            color: #D0B752;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: #2B350B;
+            padding: 30px 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            color: #B8B8B8;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="mobile-header">
+        <div class="logo"></div>
+        <div class="header-buttons">
+            <a href="/registration/register" class="btn btn-register">Üye Ol</a>
+            <a href="javascript:void(0)" onclick="openLoginPopup()" class="btn btn-login">Giriş</a>
+        </div>
+    </div>
+    
+    <!-- Notification Bar -->
+    <div class="notification-bar">
+        📢 Dilediğiniz zaman pashagir25.com yazarak güncel adresimize erişebilirsiniz.
+    </div>
+    
+    <!-- Banner Slider -->
+    <div class="banner-slider">
+        <img src="//cdn.grandpashabet7034.com/plat/prd/CMS/1093/Web_Content/Banners/mobil2 (1)_20251224175953573.jpg" alt="Banner">
+    </div>
+    
+    <!-- Quick Links -->
+    <div class="quick-links">
+        <a href="/tr/lobby/casino/main" class="quick-link">
+            <div class="quick-link-icon">🎰</div>
+            <div class="quick-link-text">Casino</div>
+        </a>
+        <a href="/tr/lobby/livecasino/main" class="quick-link">
+            <div class="quick-link-icon">🎲</div>
+            <div class="quick-link-text">Canlı Casino</div>
+        </a>
+        <a href="/sport.html" class="quick-link">
+            <div class="quick-link-icon">⚽</div>
+            <div class="quick-link-text">Spor</div>
+        </a>
+        <a href="/promotions.html" class="quick-link">
+            <div class="quick-link-icon">🎁</div>
+            <div class="quick-link-text">Promosyonlar</div>
+        </a>
+        <a href="javascript:void(0)" onclick="openDepositPopup()" class="quick-link">
+            <div class="quick-link-icon">💳</div>
+            <div class="quick-link-text">Para Yatır</div>
+        </a>
+        <a href="/account/withdrawal" class="quick-link">
+            <div class="quick-link-icon">💰</div>
+            <div class="quick-link-text">Para Çek</div>
+        </a>
+    </div>
+    
+    <!-- Popular Games Section -->
+    <div class="section">
+        <div class="section-title">🔥 Popüler Oyunlar</div>
+        <div class="game-grid">
+            <div class="game-card">
+                <img src="//cdn.grandpashabet7034.com/plat/prd/CMS/1093/Web_Content/Banners/pragmatic_20250313180420671.jpg" alt="Pragmatic Play">
+                <div class="game-card-title">Pragmatic Play</div>
+            </div>
+            <div class="game-card">
+                <img src="//cdn.grandpashabet7034.com/plat/prd/CMS/1093/Web_Content/Banners/digital_20250313200155133.jpg" alt="EGT Digital">
+                <div class="game-card-title">EGT Digital</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Desktop Version Link -->
+    <div class="desktop-link">
+        <a href="javascript:void(0)" onclick="switchToDesktop()">🖥️ Masaüstü Versiyonuna Geç</a>
+    </div>
+    
+    <!-- Floating Deposit Button -->
+    <div class="floating-deposit" onclick="openDepositPopup()">
+        💳
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="/" class="nav-item active">
+            <div class="nav-item-icon">🏠</div>
+            <div>Ana Sayfa</div>
+        </a>
+        <a href="/tr/lobby/casino/main" class="nav-item">
+            <div class="nav-item-icon">🎰</div>
+            <div>Casino</div>
+        </a>
+        <a href="/sport.html" class="nav-item">
+            <div class="nav-item-icon">⚽</div>
+            <div>Spor</div>
+        </a>
+        <a href="/promotions.html" class="nav-item">
+            <div class="nav-item-icon">🎁</div>
+            <div>Bonuslar</div>
+        </a>
+        <a href="/account" class="nav-item">
+            <div class="nav-item-icon">👤</div>
+            <div>Hesabım</div>
+        </a>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-logo">
+            <img src="//cdn.grandpashabet7034.com/plat/prd/Img/partners/1093/footer_logos_sprite.webp" alt="Logos" style="max-width: 100%;">
+        </div>
+        <div class="footer-text">
+            GRANDPASHABET © 2025 Tüm hakları saklıdır.<br>
+            Kumar Alışkanlık yapabilir. Lütfen Sorumlu davranınız. +18
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    
+    <!-- Scripts -->
+    <script src="grandpasha_login.js"></script>
+    <script src="deposit_popup.js"></script>
+    
+    <script>
+        // Switch to desktop version
+        function switchToDesktop() {
+            // Set cookie to prefer desktop
+            document.cookie = 'preferDesktop=true; path=/; max-age=2592000'; // 30 days
+            window.location.href = '/';
+        }
+        
+        // Open login popup
+        function openLoginPopup() {
+            if (typeof window.openLoginPopup === 'function') {
+                window.openLoginPopup();
+            } else {
+                window.location.href = '/login';
+            }
+        }
+        
+        // Open deposit popup
+        function openDepositPopup() {
+            if (typeof window.openDepositPopup === 'function') {
+                window.openDepositPopup();
+            } else {
+                window.location.href = '/account/deposit';
+            }
+        }
+        
+        console.log('📱 Mobile version loaded');
+    </script>
+</body>
+</html>
