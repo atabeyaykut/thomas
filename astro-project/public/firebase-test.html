@@ -162,87 +162,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>🔥 Firebase Backend Tester</h1>
-        <p class="subtitle">IBAN POST/PUT/DELETE İşlemlerini Test Edin</p>
-        
-        <!-- POST - Create New -->
-        <div class="section">
-            <h2>📝 POST - Yeni IBAN Ekle</h2>
-            <div class="form-group">
-                <label>Bank ID (bank1, bank2, bank3, bank4...):</label>
-                <input type="text" id="postBankId" value="bank4" placeholder="bank4">
-            </div>
-            <div class="form-group">
-                <label>Hesap Sahibi:</label>
-                <input type="text" id="postOwner" value="GRANDPASHABET LTD" placeholder="GRANDPASHABET LTD">
-            </div>
-            <div class="form-group">
-                <label>IBAN:</label>
-                <input type="text" id="postIban" value="TR66 0009 9000 0000 1111 2222 33" placeholder="TR66 0009 9000...">
-            </div>
-            <div class="form-group">
-                <label>Banka Adı:</label>
-                <input type="text" id="postBankName" value="Yapı Kredi Bankası" placeholder="Yapı Kredi">
-            </div>
-            <div class="form-group">
-                <label>Şube Kodu:</label>
-                <input type="text" id="postBranch" value="9000" placeholder="9000">
-            </div>
-            <div class="form-group">
-                <label>Hesap No:</label>
-                <input type="text" id="postAccountNo" value="99887766" placeholder="99887766">
-            </div>
-            <button onclick="postNewBank()">➕ POST - Yeni Ekle</button>
-        </div>
-        
-        <!-- PUT - Update Existing -->
-        <div class="section">
-            <h2>✏️ PUT - Mevcut IBAN Güncelle</h2>
-            <div class="form-group">
-                <label>Bank ID (güncellenecek):</label>
-                <select id="putBankId">
-                    <option value="bank1">bank1 - Ziraat Bankası</option>
-                    <option value="bank2">bank2 - Garanti BBVA</option>
-                    <option value="bank3">bank3 - İş Bankası</option>
-                    <option value="bank4">bank4 - Yapı Kredi</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Yeni IBAN:</label>
-                <input type="text" id="putIban" placeholder="TR99 0000 0000 0000 0000 0000 00">
-            </div>
-            <div class="form-group">
-                <label>Yeni Hesap Sahibi (opsiyonel):</label>
-                <input type="text" id="putOwner" placeholder="Boş bırakılırsa değişmez">
-            </div>
-            <button onclick="updateBank()">🔄 PUT - Güncelle</button>
-        </div>
-        
-        <!-- DELETE -->
-        <div class="section">
-            <h2>🗑️ DELETE - IBAN Sil</h2>
-            <div class="form-group">
-                <label>Silinecek Bank ID:</label>
-                <select id="deleteBankId">
-                    <option value="bank1">bank1</option>
-                    <option value="bank2">bank2</option>
-                    <option value="bank3">bank3</option>
-                    <option value="bank4">bank4</option>
-                </select>
-            </div>
-            <button class="delete" onclick="deleteBank()">❌ DELETE - Sil</button>
-        </div>
+        <h1>🏦 IBAN Görüntüleyici</h1>
+        <p class="subtitle">Firebase Backend'den IBAN Verilerini Görüntüle</p>
         
         <!-- READ - Get All -->
         <div class="section">
-            <h2>📖 READ - Tüm Verileri Oku</h2>
-            <button class="read" onclick="getAllBanks()">📥 GET - Tüm IBAN'ları Getir</button>
+            <h2>📖 Aktif IBAN Bilgileri</h2>
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                ℹ️ IBAN'lar otomatik olarak yüklenir. Manuel güncelleme için butona tıklayın.
+            </p>
+            <button class="read" onclick="getAllBanks()">🔄 Yenile</button>
             <div id="dataDisplay"></div>
         </div>
         
         <!-- Console Log -->
         <div class="log" id="consoleLog">
-            <div class="log-entry info">🚀 Firebase Backend Tester hazır. Yukarıdaki butonlarla test yapabilirsiniz.</div>
+            <div class="log-entry info">🚀 IBAN görüntüleyici hazır. Veriler otomatik yükleniyor...</div>
         </div>
     </div>
 
@@ -276,87 +211,7 @@
             logDiv.scrollTop = logDiv.scrollHeight;
         }
 
-        // POST - Create New Bank
-        async function postNewBank() {
-            const bankId = document.getElementById('postBankId').value;
-            const owner = document.getElementById('postOwner').value;
-            const iban = document.getElementById('postIban').value;
-            const bankName = document.getElementById('postBankName').value;
-            const branch = document.getElementById('postBranch').value;
-            const accountNo = document.getElementById('postAccountNo').value;
-
-            if (!bankId || !owner || !iban) {
-                log('❌ Lütfen tüm zorunlu alanları doldurun!', 'error');
-                return;
-            }
-
-            log(`📤 POST işlemi başlatılıyor: ${bankId}`, 'info');
-
-            const newBankData = {
-                owner: owner,
-                iban: iban,
-                bankName: bankName,
-                branch: branch,
-                accountNo: accountNo,
-                createdAt: new Date().toISOString()
-            };
-
-            try {
-                await database.ref(`bankData/${bankId}`).set(newBankData);
-                log(`✅ POST başarılı! ${bankId} eklendi.`, 'success');
-                log(`📊 Eklenen veri: ${JSON.stringify(newBankData)}`, 'info');
-            } catch (error) {
-                log(`❌ POST hatası: ${error.message}`, 'error');
-            }
-        }
-
-        // PUT - Update Existing Bank
-        async function updateBank() {
-            const bankId = document.getElementById('putBankId').value;
-            const newIban = document.getElementById('putIban').value;
-            const newOwner = document.getElementById('putOwner').value;
-
-            if (!newIban && !newOwner) {
-                log('❌ En az bir alan güncellenmelidir!', 'error');
-                return;
-            }
-
-            log(`📤 PUT işlemi başlatılıyor: ${bankId}`, 'info');
-
-            const updates = {};
-            if (newIban) updates.iban = newIban;
-            if (newOwner) updates.owner = newOwner;
-            updates.updatedAt = new Date().toISOString();
-
-            try {
-                await database.ref(`bankData/${bankId}`).update(updates);
-                log(`✅ PUT başarılı! ${bankId} güncellendi.`, 'success');
-                log(`📊 Güncellenen alanlar: ${JSON.stringify(updates)}`, 'info');
-            } catch (error) {
-                log(`❌ PUT hatası: ${error.message}`, 'error');
-            }
-        }
-
-        // DELETE - Remove Bank
-        async function deleteBank() {
-            const bankId = document.getElementById('deleteBankId').value;
-            
-            if (!confirm(`${bankId} silinecek. Emin misiniz?`)) {
-                log('⚠️ Silme işlemi iptal edildi.', 'info');
-                return;
-            }
-
-            log(`📤 DELETE işlemi başlatılıyor: ${bankId}`, 'info');
-
-            try {
-                await database.ref(`bankData/${bankId}`).remove();
-                log(`✅ DELETE başarılı! ${bankId} silindi.`, 'success');
-            } catch (error) {
-                log(`❌ DELETE hatası: ${error.message}`, 'error');
-            }
-        }
-
-        // GET - Read All Banks
+        // GET - Read All Banks (Read-only mode)
         async function getAllBanks() {
             log('📤 GET işlemi başlatılıyor...', 'info');
 
