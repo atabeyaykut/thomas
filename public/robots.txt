@@ -43,6 +43,18 @@ Allow: /
 Crawl-delay: 1
 
 # ============================================
+# BLOCKED PATHS - Prevent indexing of internal/admin pages
+# ============================================
+
+User-agent: *
+Disallow: /ReferAFriend/
+Disallow: /referafriend/
+Disallow: /Account/
+Disallow: /account/
+Disallow: /admin/
+Disallow: /api/
+
+# ============================================
 # SEO TOOLS - Controlled Access for Backlink Analysis
 # ============================================
 
