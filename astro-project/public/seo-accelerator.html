@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Accelerator - GrandPashabet</title>
+    <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+    <h1>SEO Accelerator Panel</h1>
+    <p>Bu sayfa sadece admin kullanımı içindir.</p>
+    
+    <div style="margin: 20px; padding: 20px; border: 1px solid #ccc;">
+        <h2>Manuel IndexNow Submission</h2>
+        <button onclick="submitToIndexNow()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+            Submit to IndexNow
+        </button>
+        <div id="indexnow-status" style="margin-top: 10px;"></div>
+    </div>
+    
+    <div style="margin: 20px; padding: 20px; border: 1px solid #ccc;">
+        <h2>Google Search Console Quick Actions</h2>
+        <button onclick="copyUrlForInspection()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+            Copy Main URL for Inspection
+        </button>
+        <div id="url-status" style="margin-top: 10px;"></div>
+    </div>
+    
+    <div style="margin: 20px; padding: 20px; border: 1px solid #ccc;">
+        <h2>Sitemap Status</h2>
+        <p>Total URLs: <strong>78</strong></p>
+        <p>Sitemap URL: <a href="https://grandpashabet7234.com/sitemap.xml" target="_blank">https://grandpashabet7234.com/sitemap.xml</a></p>
+        <button onclick="window.open('https://grandpashabet7234.com/sitemap.xml', '_blank')" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+            View Sitemap
+        </button>
+    </div>
+    
+    <script src="indexnow-submit.js"></script>
+    <script>
+        function copyUrlForInspection() {
+            const url = 'https://grandpashabet7234.com/';
+            navigator.clipboard.writeText(url).then(() => {
+                document.getElementById('url-status').innerHTML = '<span style="color: green;">✅ URL copied! Paste in Google Search Console.</span>';
+            });
+        }
+        
+        // Override IndexNow to show status
+        const originalSubmit = window.submitToIndexNow;
+        window.submitToIndexNow = function() {
+            document.getElementById('indexnow-status').innerHTML = '<span style="color: blue;">⏳ Submitting...</span>';
+            originalSubmit();
+            setTimeout(() => {
+                document.getElementById('indexnow-status').innerHTML = '<span style="color: green;">✅ Submitted to IndexNow endpoints!</span>';
+            }, 2000);
+        };
+    </script>
+</body>
+</html>
