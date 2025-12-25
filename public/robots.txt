@@ -1,5 +1,119 @@
-# robots.txt for GrandPashabet
-# Updated: 2025-12-24
+# robots.txt for GrandPashabet - Ultimate SEO/Backlink Optimized
+# Updated: 2025-12-25
+# Optimized for maximum crawl efficiency and backlink value
+
+# ============================================
+# MAIN CRAWLERS - Full Access (No Crawl Delay)
+# ============================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Mobile
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Sogou
+Allow: /
+Crawl-delay: 1
+
+# ============================================
+# SEO TOOLS - Controlled Access for Backlink Analysis
+# ============================================
+
+User-agent: AhrefsBot
+Allow: /blog/
+Allow: /rehber/
+Allow: /yardim/
+Allow: /bonuslar/
+Allow: /oyunlar/
+Allow: /spor/
+Allow: /haberler/
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 2
+
+User-agent: SemrushBot
+Allow: /blog/
+Allow: /rehber/
+Allow: /yardim/
+Allow: /bonuslar/
+Allow: /oyunlar/
+Allow: /spor/
+Allow: /haberler/
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 2
+
+User-agent: MJ12bot
+Allow: /blog/
+Allow: /rehber/
+Allow: /yardim/
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 3
+
+User-agent: DotBot
+Allow: /blog/
+Allow: /rehber/
+Allow: /yardim/
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 3
+
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
+# ============================================
+# SOCIAL MEDIA CRAWLERS - Full Access
+# ============================================
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# ============================================
+# DEFAULT RULES FOR ALL OTHER BOTS
+# ============================================
 
 User-agent: *
 Allow: /
@@ -7,48 +121,126 @@ Allow: /
 # Disallow admin and private areas
 Disallow: /admin/
 Disallow: /Account/
+Disallow: /account/
 Disallow: /api/
 Disallow: /_app/
 Disallow: /cdn-cgi/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
 
-# Disallow search parameters
+# Disallow duplicate content and parameters
 Disallow: /*?*sort=
 Disallow: /*?*filter=
 Disallow: /*?*session=
+Disallow: /*?*sid=
+Disallow: /*?*ref=
+Disallow: /*?*utm_
+Disallow: /*?page=
+Disallow: /search?
+Disallow: /*?search=
 
-# Allow CSS and JS
-Allow: /*.css
-Allow: /*.js
-Allow: /*.webp
-Allow: /*.jpg
-Allow: /*.png
-Allow: /*.svg
+# Disallow print and mobile versions (if separate)
+Disallow: /print/
+Disallow: /*?print=
 
-# Sitemap location
-Sitemap: https://grandpashabet7034.com/sitemap.xml
+# Allow important resources
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+Allow: /*.eot$
+Allow: /*.ico$
 
-# Crawl-delay for polite crawling
-Crawl-delay: 1
+# Allow important content directories (for backlinks)
+Allow: /blog/
+Allow: /rehber/
+Allow: /yardim/
+Allow: /bonuslar/
+Allow: /oyunlar/
+Allow: /spor/
+Allow: /haberler/
+Allow: /turnuvalar/
+Allow: /odeme-yontemleri/
+Allow: /saglayicilar/
+Allow: /karsilastirma/
 
-# Specific bot rules
-User-agent: Googlebot
-Allow: /
+# ============================================
+# SITEMAPS - Multiple for Better Organization
+# ============================================
 
-User-agent: Bingbot
-Allow: /
+Sitemap: https://grandpashabet7234.com/sitemap.xml
 
-User-agent: Yandex
-Allow: /
+# ============================================
+# CRAWL OPTIMIZATION
+# ============================================
 
-# Block bad bots
-User-agent: AhrefsBot
-Crawl-delay: 10
+# Default crawl delay (0 = no delay for main bots)
+Crawl-delay: 0
 
-User-agent: SemrushBot
-Crawl-delay: 10
+# ============================================
+# BAD BOTS - Block Completely
+# ============================================
 
-User-agent: MJ12bot
+User-agent: SiteBot
 Disallow: /
 
-User-agent: DotBot
+User-agent: WebCopier
 Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebSauger
+Disallow: /
+
+User-agent: WebCapture
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Wget
+Disallow: /
+
+User-agent: grub-client
+Disallow: /
+
+User-agent: k2spider
+Disallow: /
+
+User-agent: NPBot
+Disallow: /
+
+User-agent: WebReaper
+Disallow: /
+
+# ============================================
+# NOTES FOR SEO
+# ============================================
+# This robots.txt is optimized for:
+# 1. Maximum crawl efficiency (no delay for major search engines)
+# 2. Backlink tool access (Ahrefs, Semrush allowed on content pages)
+# 3. Social media sharing (all social bots allowed)
+# 4. Content protection (admin/api blocked)
+# 5. Duplicate content prevention (parameters blocked)
+# 6. Resource optimization (CSS/JS/images allowed)
