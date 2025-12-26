@@ -103,15 +103,14 @@
 <script src="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Scripts/DynamicContent/Web/GamesCommon.js?v=1.2312.2025.954"></script>
 <script src="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Scripts/jackpotSlider.min.js?v=1.2312.2025.954"></script>
 
-<link href="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Content/themes/base/jquery-ui.css?v=1.2312.2025.954" type="text/css" rel="stylesheet">
-<link href="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Content/Utils/swiper.css?v=1.2312.2025.954" type="text/css" rel="stylesheet">
+<!-- Fonts from Google (reliable CDN) -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
 
-        <link href="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Content/fonts/roboto/fontRoboto.css?v=1.2312.2025.954" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-        <link href="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Content/components/cwDynamicIcons.css?v=1.2312.2025.954" rel="stylesheet">
-        <link href="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Content/site.css?v=1.2312.2025.954" rel="stylesheet">
-        <link href="//cdn.grandpashabet7034.com/plat/prd/CW/GPB/Content/paymentDesktop.css?v=1.2312.2025.954" type="text/css" rel="stylesheet">
-        <link href="responsive.css" type="text/css" rel="stylesheet">
+<!-- Local responsive CSS -->
+<link href="responsive.css" type="text/css" rel="stylesheet">
+
+<!-- CDN CSS/JS removed due to SSL certificate issues (ERR_CERT_AUTHORITY_INVALID) -->
+<!-- All critical styles are now inline for faster loading and no SSL errors -->
 
 <!-- RSS Feed -->
 <link rel="alternate" type="application/rss+xml" title="GrandPashabet RSS Feed" href="https://grandpashabet7234.com/rss.xml">
@@ -282,7 +281,7 @@
     }
 </style>
 
-<!-- Critical CSS for immediate rendering -->
+<!-- Critical CSS for immediate rendering - Expanded to replace CDN CSS -->
 <style id="critical-css">
     /* Reset and base styles */
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -291,10 +290,13 @@
         font-family: 'Roboto', Arial, sans-serif;
         font-size: 14px;
         line-height: 1.6;
-        color: #333;
+        color: #fff;
         background: #1a1a1a;
         padding: 0 !important;
     }
+    
+    a { color: #ffd700; text-decoration: none; }
+    a:hover { color: #ffed4e; }
     
     /* Ensure content is visible */
     #app, .toto_landint_container {
@@ -306,12 +308,22 @@
     
     /* Header */
     .tl_header_top_row, .static_header_content {
-        background: #2d2d2d;
-        padding: 15px;
+        background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        padding: 15px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .tl_header_top_row_fix {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     
     .tl_logo a {
@@ -323,11 +335,23 @@
         background-position: center !important;
     }
     
+    .tl_head_promos_btns {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .tl_login_container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
     /* Buttons */
     .tl_btn, button, a.button {
         display: inline-block;
         padding: 10px 20px;
-        background: #ffd700;
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
         color: #000;
         text-decoration: none;
         border-radius: 5px;
@@ -335,16 +359,25 @@
         cursor: pointer;
         font-weight: 600;
         transition: all 0.3s;
+        font-size: 14px;
+        white-space: nowrap;
     }
     
-    .tl_btn:hover { background: #ffed4e; }
+    .tl_btn:hover { 
+        background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+    }
     
     .tl_btn-accent {
-        background: #ff4444;
+        background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
         color: #fff;
     }
     
-    .tl_btn-accent:hover { background: #ff6666; }
+    .tl_btn-accent:hover { 
+        background: linear-gradient(135deg, #ff6666 0%, #ff4444 100%);
+        box-shadow: 0 4px 8px rgba(255,68,68,0.3);
+    }
     
     /* Navigation */
     .tl_simple_link {
@@ -352,10 +385,21 @@
         text-decoration: none;
         padding: 8px 15px;
         display: inline-block;
-        transition: color 0.3s;
+        transition: all 0.3s;
+        border-radius: 3px;
     }
     
-    .tl_simple_link:hover { color: #ffd700; }
+    .tl_simple_link:hover { 
+        color: #ffd700;
+        background: rgba(255,215,0,0.1);
+    }
+    
+    .promo_btn {
+        background: rgba(255,215,0,0.1);
+        border: 1px solid #ffd700;
+        border-radius: 5px;
+        padding: 8px 15px;
+    }
     
     /* Container */
     .container, .main-container {
@@ -369,13 +413,56 @@
     .align-items-center { align-items: center !important; }
     .justify-content-center { justify-content: center !important; }
     .justify-content-between { justify-content: space-between !important; }
+    .flex-wrap { flex-wrap: wrap !important; }
     
     /* Spacing */
     .mx-1 { margin-left: 5px !important; margin-right: 5px !important; }
     .mr-2 { margin-right: 10px !important; }
+    .gap-10 { gap: 10px !important; }
     
-    /* Hide elements that need JS */
+    /* Hide elements */
     .hidden { display: none !important; }
+    
+    /* Dropdown */
+    .header_dropdown {
+        position: relative;
+    }
+    
+    .header_dropdown__btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(255,215,0,0.1);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .header_dropdown__btn:hover {
+        background: rgba(255,215,0,0.2);
+    }
+    
+    /* Icons */
+    .dynamic_icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* Language dropdown */
+    .tl_drop_down {
+        position: relative;
+    }
+    
+    .tl_acc_lang {
+        background: rgba(255,255,255,0.1);
+        border-radius: 5px;
+        padding: 8px 12px;
+    }
+    
+    /* Main content area */
+    .cw_state_idle {
+        min-height: calc(100vh - 100px);
+    }
     
     /* Loader */
     .tl_loader_box {
@@ -404,11 +491,20 @@
         to { transform: rotate(360deg); }
     }
     
+    /* Images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
     /* Responsive */
     @media (max-width: 768px) {
-        .tl_header_top_row { flex-direction: column; }
-        .tl_logo a { width: 150px; height: 50px; }
+        .tl_header_top_row { flex-direction: column; padding: 10px; }
+        .tl_header_top_row_fix { flex-direction: column; }
+        .tl_logo a { width: 150px; height: 50px; margin-bottom: 10px; }
         .tl_btn { width: 100%; margin: 5px 0; }
+        .tl_head_promos_btns { flex-wrap: wrap; justify-content: center; }
+        .tl_login_container { width: 100%; justify-content: center; }
     }
 </style>
 
